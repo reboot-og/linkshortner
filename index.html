@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+
+            width: 350px;
+
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #333;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .error {
+            color: red;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>URL Shortener</h1>
+
+        <form method="POST">
+            <input type="text" name="url" placeholder="Enter URL" required>
+
+            <input type="text" name="code" placeholder="Enter custom code">
+
+            <button type="submit">Create URL</button>
+        </form>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        {% if url %}
+            <div class="result">
+                <p>Short URL Created:</p>
+                <a href="{{ url }}" target="_blank">{{ url }}</a>
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
